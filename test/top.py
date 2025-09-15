@@ -89,6 +89,7 @@ async def test_top(dut):
 
         # Test 3: Send the data for the first LED
         dut._log.info("Test 3: Send data for first LED")
+        await Timer(PERIOD_NS/2, units='ns')
         for led in [
             [0b11110000, 0b10101010, 0b11001100, 0b00001111],
         ]  * 16 + [[0]]* 8 :

@@ -19,6 +19,7 @@ architecture rtl of tt_um_spi2ws2811x8 is
 	constant n_strips : integer := 8;
 
 	signal rst 		     : std_logic;
+	signal led_rst	     : std_logic;
 
 	signal command       : std_logic_vector(7 downto 0);
 	signal command_ready : std_logic;
@@ -29,6 +30,7 @@ architecture rtl of tt_um_spi2ws2811x8 is
 	signal strip_counter : integer range 0 to n_strips - 1 := 0;
 begin
 	rst <= not rst_n;
+	led_rst <= not (rst_n and ui_in(0));
 	uio_oe <= (others => '0');
 	uio_out <= (others => '0');
 
@@ -50,7 +52,7 @@ begin
 		led: entity work.ws2811
 		port map(
 			i_clock => clk,
-			i_reset => rst,
+			i_reset => led_rst,
 
 			i_trigger => strip_trigger(i),
 			i_pixel_data => word,
