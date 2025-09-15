@@ -16,7 +16,7 @@ entity tt_um_spi2ws2811x16 is
 end entity tt_um_spi2ws2811x16;
 
 architecture rtl of tt_um_spi2ws2811x16 is
-	constant n_strips : integer := 15;
+	constant n_strips : integer := 14;
 
 	signal rst 		     : std_logic;
 
@@ -30,7 +30,7 @@ architecture rtl of tt_um_spi2ws2811x16 is
 begin
 	rst <= not rst_n;
 	uio_oe <= (others => '0');
-	uio_out(7) <= '0';
+	uio_out(7 downto 6) <= (others => '0');
 
 	spi_controller : entity work.spi
 	port map(
