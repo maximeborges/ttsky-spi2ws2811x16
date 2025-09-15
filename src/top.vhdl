@@ -63,7 +63,7 @@ begin
 
 	-- The last 7 will be on the uio port
 	led_io:
-	for i in 8 to n_strips - 2 generate
+	for i in 8 to 14 generate
 		led: entity work.ws2811
 		port map(
 			i_clock => clk,
@@ -89,7 +89,7 @@ begin
 		end if;
 	end process;
 
-	gen_strip_trigger: for i in 0 to n_strips - 1 generate
+	gen_strip_trigger: for i in 0 to 14 generate
 		strip_trigger(i) <= '1' when (word_ready = '1' and strip_counter = i) else '0';
 	end generate gen_strip_trigger;
 
