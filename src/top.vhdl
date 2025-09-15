@@ -16,6 +16,8 @@ entity tt_um_spi2ws2811x16 is
 end entity tt_um_spi2ws2811x16;
 
 architecture rtl of tt_um_spi2ws2811x16 is
+	constant n_strips : integer := 15;
+
 	signal rst 		     : std_logic;
 
 	signal command       : std_logic_vector(7 downto 0);
@@ -23,8 +25,8 @@ architecture rtl of tt_um_spi2ws2811x16 is
 	signal word          : std_logic_vector(7 downto 0);
 	signal word_ready    : std_logic;
 
-	signal strip_trigger : std_logic_vector(15 downto 0);
-	signal strip_counter : integer range 0 to 15 := 0;
+	signal strip_trigger : std_logic_vector(n_strips - 1 downto 0);
+	signal strip_counter : integer range 0 to n_strips - 1 := 0;
 begin
 	rst <= not rst_n;
 	uio_oe <= (others => '0');
@@ -43,7 +45,7 @@ begin
 		o_word_ready => word_ready
 	);
 
-	-- Instanciate 16 LED controllers
+	-- Instanciate 15 LED controllers
 	-- The first 8 will be on the uo port
 	led_o:
 	for i in 0 to 7 generate
@@ -59,9 +61,9 @@ begin
 		);
 	end generate led_o;
 
-	-- The last 8 will be on the uio port
+	-- The last 7 will be on the uio port
 	led_io:
-	for i in 8 to 15 generate
+	for i in 8 to n_strips - 1 generate
 		led: entity work.ws2811
 		port map(
 			i_clock => clk,
@@ -79,7 +81,7 @@ begin
 		if rst = '1' then
 			strip_counter <= 0;
 		elsif falling_edge(word_ready) then
-			if strip_counter < 15 then
+			if strip_counter < n_strips - 1 then
 				strip_counter <= strip_counter + 1;
 			else
 				strip_counter <= 0;
@@ -87,7 +89,7 @@ begin
 		end if;
 	end process;
 
-	gen_strip_trigger: for i in 0 to 15 generate
+	gen_strip_trigger: for i in 0 to n_strips - 1 generate
 		strip_trigger(i) <= '1' when (word_ready = '1' and strip_counter = i) else '0';
 	end generate gen_strip_trigger;
 
