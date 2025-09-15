@@ -91,7 +91,7 @@ async def test_top(dut):
         dut._log.info("Test 3: Send data for first LED")
         for led in [
             [0b11110000, 0b10101010, 0b11001100, 0b00001111],
-        ]  * 16 + [[0, 0, 0]]* 16 :
+        ]  * 16 + [[0]]* 8 :
             for byte in led:
                 for i in range(8):
                     bit  = ((byte >> (7 - i)) & 1) == 1
@@ -121,8 +121,8 @@ if __name__ == "__main__":
     )
     runner.build(
         sources=[src_path / "top.vhdl"],
-        hdl_toplevel="tt_um_spi2ws2811x16",
+        hdl_toplevel="tt_um_spi2ws2811x8",
         build_args=["--std=08"],
     )
 
-    runner.test(hdl_toplevel="tt_um_spi2ws2811x16", test_module="top,", waves=True, plusargs=["--vcd=tb.vcd"])
+    runner.test(hdl_toplevel="tt_um_spi2ws2811x8", test_module="top,", waves=True, plusargs=["--vcd=tb.vcd"])

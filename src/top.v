@@ -515,7 +515,7 @@ module spi_8
   assign n209 = {n208, n206, n204, n202, n200, n198, n196, n194};
 endmodule
 
-module tt_um_spi2ws2811x16
+module tt_um_spi2ws2811x8
   (input  clk,
    input  rst_n,
    input  ena,

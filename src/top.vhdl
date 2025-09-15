@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity tt_um_spi2ws2811x16 is
+entity tt_um_spi2ws2811x8 is
 	port(
 		clk		: in 	std_logic;
 		rst_n	: in 	std_logic;
@@ -13,9 +13,9 @@ entity tt_um_spi2ws2811x16 is
 		uo_out	: out   std_logic_vector(7 downto 0);
 		uio_out	: out   std_logic_vector(7 downto 0)
 	);
-end entity tt_um_spi2ws2811x16;
+end entity tt_um_spi2ws2811x8;
 
-architecture rtl of tt_um_spi2ws2811x16 is
+architecture rtl of tt_um_spi2ws2811x8 is
 	constant n_strips : integer := 8;
 
 	signal rst 		     : std_logic;
@@ -40,14 +40,11 @@ begin
 		i_cs => ui_in(0),
 		i_copi => ui_in(1),
 
-		-- o_command => command,
-		-- o_command_ready => command_ready,
 		o_word => word,
 		o_word_ready => word_ready
 	);
 
-	-- Instanciate 15 LED controllers
-	-- The first 8 will be on the uo port
+	-- Instanciate 8 LED controllers
 	led_o:
 	for i in 0 to 7 generate
 		led: entity work.ws2811
@@ -61,21 +58,6 @@ begin
 			o_data => uo_out(i)
 		);
 	end generate led_o;
-
-	-- The last 7 will be on the uio port
-	-- led_io:
-	-- for i in 8 to n_strips - 1 generate
-	-- 	led: entity work.ws2811
-	-- 	port map(
-	-- 		i_clock => clk,
-	-- 		i_reset => rst,
-
-	-- 		i_trigger => strip_trigger(i),
-	-- 		i_pixel_data => word,
-			
-	-- 		o_data => uio_out(i - 8)
-	-- 	);
-	-- end generate led_io;
 
 	process(clk, rst, word_ready)
 	begin

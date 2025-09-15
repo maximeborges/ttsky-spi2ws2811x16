@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity ws2811 is
 	generic(
-		n_bits : natural := 8  -- Number of bits per i_pixel_data (typically 24 for RGB)
+		n_bits : natural := 8  -- Number of bits per pixel channel
 	);
 	port(
 		-- Global Signals
@@ -33,17 +33,6 @@ architecture rtl of ws2811 is
 
 	signal debug : std_logic := '0';
 begin
-	-- process(i_trigger) is
-	-- begin
-	-- 	if i_trigger = '1' then
-	-- 		running <= '1';
-	-- 		rgb <= i_pixel_data;
-	-- 		bit_data_in <= i_pixel_data(n_bits - 1);
-			
-	-- 		o_data <= '1';
-	-- 	end if;
-	-- end process;
-
 	process(i_reset, i_clock) is
 	begin
 		if i_reset = '1' then
