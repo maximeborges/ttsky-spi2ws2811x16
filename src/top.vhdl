@@ -16,7 +16,7 @@ entity tt_um_spi2ws2811x16 is
 end entity tt_um_spi2ws2811x16;
 
 architecture rtl of tt_um_spi2ws2811x16 is
-	constant n_strips : integer := 16;
+	constant n_strips : integer := 15;
 
 	signal rst 		     : std_logic;
 
@@ -26,10 +26,11 @@ architecture rtl of tt_um_spi2ws2811x16 is
 	signal word_ready    : std_logic;
 
 	signal strip_trigger : std_logic_vector(n_strips - 1 downto 0);
-	signal strip_counter : integer range 0 to n_strips - 1 := 0;
+	signal strip_counter : integer range 0 to 15 := 0;
 begin
 	rst <= not rst_n;
 	uio_oe <= (others => '0');
+	uio_out(7) <= '0';
 
 	spi_controller : entity work.spi
 	port map(
@@ -63,7 +64,7 @@ begin
 
 	-- The last 7 will be on the uio port
 	led_io:
-	for i in 8 to 14 generate
+	for i in 8 to n_strips - 1 generate
 		led: entity work.ws2811
 		port map(
 			i_clock => clk,
@@ -81,7 +82,7 @@ begin
 		if rst = '1' then
 			strip_counter <= 0;
 		elsif falling_edge(word_ready) then
-			if strip_counter < n_strips - 1 then
+			if strip_counter < 15 then
 				strip_counter <= strip_counter + 1;
 			else
 				strip_counter <= 0;
@@ -89,7 +90,7 @@ begin
 		end if;
 	end process;
 
-	gen_strip_trigger: for i in 0 to 14 generate
+	gen_strip_trigger: for i in 0 to n_strips - 1 generate
 		strip_trigger(i) <= '1' when (word_ready = '1' and strip_counter = i) else '0';
 	end generate gen_strip_trigger;
 
