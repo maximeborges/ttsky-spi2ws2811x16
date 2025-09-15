@@ -1,9 +1,5 @@
 name: test
-on:
-  push:
-    branches: none
-  workflow_dispatch:
-    branches: none
+on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-24.04
@@ -15,7 +11,7 @@ jobs:
 
       - name: Install iverilog
         shell: bash
-        run: sudo apt-get update && sudo apt-get install -y ghdl
+        run: sudo apt-get update && sudo apt-get install -y iverilog
 
       # Set Python up and install cocotb
       - name: Setup python
@@ -30,21 +26,22 @@ jobs:
       - name: Run tests
         run: |
           cd test
-          python3 top.py
+          make clean
+          make
           # make will return success even if the test fails, so check for failure in the results.xml
           ! grep failure results.xml
 
       - name: Test Summary
         uses: test-summary/action@v2.3
         with:
-          paths: "test/sim_build/results.xml"
+          paths: "test/results.xml"
         if: always()
 
-      - name: upload ghw
+      - name: upload vcd
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
-          name: test-ghw
+          name: test-vcd
           path: |
-            test/sim_build/top.ghw
-            test/sim_build/results.xml
+            test/tb.vcd
+            test/results.xml
