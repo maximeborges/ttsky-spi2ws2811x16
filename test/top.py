@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: UNLICENSED
 
 from pathlib import Path
+import os
 import threading
 
 import cocotb
@@ -107,21 +108,27 @@ if __name__ == "__main__":
     proj_path = Path(__file__).resolve().parent
     src_path = proj_path.parent / "src"
 
+    # check for `PDK` env variable so we can have all the build file in the current dircetory for the CI to be happy
+    build_dir = proj_path / "sim_build" if "PDK" not in os.environ else proj_path
+
     runner = get_runner("ghdl")
     runner.build(
         sources=[src_path / "spi.vhdl"],
         hdl_toplevel="spi",
         build_args=["--std=08"],
+        build_dir=build_dir,
     )
     runner.build(
         sources=[src_path / "ws2811.vhdl"],
         hdl_toplevel="ws2811",
         build_args=["--std=08"],
+        build_dir=build_dir,
     )
     runner.build(
         sources=[src_path / "top.vhdl"],
         hdl_toplevel="tt_um_spi2ws2811x16",
         build_args=["--std=08"],
+        build_dir=build_dir,
     )
 
-    runner.test(hdl_toplevel="tt_um_spi2ws2811x16", test_module="top,", waves=True, plusargs=["--wave=top.ghw", "--vcd=tb.vcd"])
+    runner.test(hdl_toplevel="tt_um_spi2ws2811x16", test_module="top,", waves=True, plusargs=["--wave=top.ghw", "--vcd=tb.vcd"], build_dir=build_dir)
