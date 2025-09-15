@@ -19,8 +19,8 @@ entity ws2811 is
 end entity ws2811;
 
 architecture rtl of ws2811 is
-	constant CYC_HIGH  : natural := 10;
-	constant CYC_LOW   : natural := 6;
+	constant CYC_HIGH  : natural := 5;
+	constant CYC_LOW   : natural := 3;
 	constant CYC_LEN   : natural := CYC_HIGH + CYC_LOW;
 
 	signal cyc_count   : integer range 0 to CYC_LEN;

@@ -26,7 +26,7 @@ architecture rtl of tt_um_spi2ws2811x16 is
 	signal word_ready    : std_logic;
 
 	signal strip_trigger : std_logic_vector(n_strips - 1 downto 0);
-	signal strip_counter : integer range 0 to 15 := 0;
+	signal strip_counter : integer range 0 to n_strips - 1 := 0;
 begin
 	rst <= not rst_n;
 	uio_oe <= (others => '0');
@@ -82,7 +82,7 @@ begin
 		if rst = '1' then
 			strip_counter <= 0;
 		elsif falling_edge(word_ready) then
-			if strip_counter < 15 then
+			if strip_counter < n_strips - 1 then
 				strip_counter <= strip_counter + 1;
 			else
 				strip_counter <= 0;

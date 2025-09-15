@@ -4,7 +4,7 @@ module ws2811_8
    input  i_trigger,
    input  [7:0] i_pixel_data,
    output o_data);
-  wire [4:0] cyc_count;
+  wire [3:0] cyc_count;
   wire [3:0] bit_count;
   reg bit_data_in;
   reg [7:0] rgb;
@@ -13,7 +13,7 @@ module ws2811_8
   wire n219;
   wire n220;
   wire n222;
-  wire [4:0] n224;
+  wire [3:0] n224;
   wire n225;
   wire [7:0] n226;
   wire n228;
@@ -21,7 +21,7 @@ module ws2811_8
   wire n231;
   wire [31:0] n232;
   wire [31:0] n234;
-  wire [4:0] n235;
+  wire [3:0] n235;
   wire [31:0] n236;
   wire n238;
   wire n239;
@@ -45,24 +45,24 @@ module ws2811_8
   wire n268;
   wire n270;
   wire n271;
-  wire [4:0] n273;
+  wire [3:0] n273;
   wire [3:0] n274;
   wire n275;
   wire n276;
   wire n277;
-  wire [4:0] n278;
+  wire [3:0] n278;
   wire [3:0] n279;
   wire n280;
   wire n281;
   wire n283;
-  wire [4:0] n285;
+  wire [3:0] n285;
   wire [3:0] n287;
   wire n289;
   wire [7:0] n291;
   wire n293;
   wire n308;
-  wire [4:0] n309;
-  reg [4:0] n310;
+  wire [3:0] n309;
+  reg [3:0] n310;
   wire n311;
   wire [3:0] n312;
   reg [3:0] n313;
@@ -106,7 +106,7 @@ module ws2811_8
   /* src/ws2811.vhdl:61:33  */
   assign n222 = n219 ? 1'b1 : n323;
   /* src/ws2811.vhdl:61:33  */
-  assign n224 = n219 ? 5'b00001 : cyc_count;
+  assign n224 = n219 ? 4'b0001 : cyc_count;
   /* src/ws2811.vhdl:61:33  */
   assign n225 = n219 ? n220 : bit_data_in;
   /* src/ws2811.vhdl:61:33  */
@@ -114,27 +114,27 @@ module ws2811_8
   /* src/ws2811.vhdl:61:33  */
   assign n228 = n219 ? 1'b1 : running;
   /* src/ws2811.vhdl:70:54  */
-  assign n229 = {27'b0, cyc_count};  //  uext
+  assign n229 = {28'b0, cyc_count};  //  uext
   /* src/ws2811.vhdl:70:54  */
-  assign n231 = $signed(n229) < $signed(32'b00000000000000000000000000001111);
+  assign n231 = $signed(n229) < $signed(32'b00000000000000000000000000000111);
   /* src/ws2811.vhdl:71:72  */
-  assign n232 = {27'b0, cyc_count};  //  uext
+  assign n232 = {28'b0, cyc_count};  //  uext
   /* src/ws2811.vhdl:71:72  */
   assign n234 = n232 + 32'b00000000000000000000000000000001;
   /* src/ws2811.vhdl:71:62  */
-  assign n235 = n234[4:0];  // trunc
+  assign n235 = n234[3:0];  // trunc
   /* src/ws2811.vhdl:72:85  */
-  assign n236 = {27'b0, cyc_count};  //  uext
+  assign n236 = {28'b0, cyc_count};  //  uext
   /* src/ws2811.vhdl:72:85  */
-  assign n238 = n236 == 32'b00000000000000000000000000001010;
+  assign n238 = n236 == 32'b00000000000000000000000000000101;
   /* src/ws2811.vhdl:72:71  */
   assign n239 = n238 & bit_data_in;
   /* src/ws2811.vhdl:72:113  */
   assign n240 = ~bit_data_in;
   /* src/ws2811.vhdl:72:133  */
-  assign n241 = {27'b0, cyc_count};  //  uext
+  assign n241 = {28'b0, cyc_count};  //  uext
   /* src/ws2811.vhdl:72:133  */
-  assign n243 = n241 == 32'b00000000000000000000000000000110;
+  assign n243 = n241 == 32'b00000000000000000000000000000011;
   /* src/ws2811.vhdl:72:119  */
   assign n244 = n243 & n240;
   /* src/ws2811.vhdl:72:97  */
@@ -170,7 +170,7 @@ module ws2811_8
   /* src/ws2811.vhdl:70:41  */
   assign n271 = n231 ? n247 : n265;
   /* src/ws2811.vhdl:70:41  */
-  assign n273 = n231 ? n235 : 5'b00000;
+  assign n273 = n231 ? n235 : 4'b0000;
   /* src/ws2811.vhdl:70:41  */
   assign n274 = n231 ? bit_count : n267;
   /* src/ws2811.vhdl:70:41  */
@@ -190,7 +190,7 @@ module ws2811_8
   /* src/ws2811.vhdl:52:25  */
   assign n283 = i_reset ? 1'b0 : n277;
   /* src/ws2811.vhdl:52:25  */
-  assign n285 = i_reset ? 5'b00000 : n278;
+  assign n285 = i_reset ? 4'b0000 : n278;
   /* src/ws2811.vhdl:52:25  */
   assign n287 = i_reset ? 4'b0000 : n279;
   /* src/ws2811.vhdl:52:25  */
@@ -528,7 +528,7 @@ module tt_um_spi2ws2811x16
   wire [7:0] word;
   wire word_ready;
   wire [7:0] strip_trigger;
-  reg [3:0] strip_counter;
+  reg [2:0] strip_counter;
   wire n4;
   localparam [7:0] n5 = 8'b00000000;
   localparam [7:0] n6 = 8'b00000000;
@@ -554,8 +554,8 @@ module tt_um_spi2ws2811x16
   wire n32;
   wire [31:0] n33;
   wire [31:0] n35;
-  wire [3:0] n36;
-  wire [3:0] n38;
+  wire [2:0] n36;
+  wire [2:0] n38;
   wire [31:0] n44;
   wire n46;
   wire n47;
@@ -589,7 +589,7 @@ module tt_um_spi2ws2811x16
   wire n96;
   wire n97;
   wire [7:0] n101;
-  reg [3:0] n102;
+  reg [2:0] n102;
   wire [7:0] n103;
   assign uio_oe = n5; //(module output)
   assign uo_out = n103; //(module output)
@@ -602,7 +602,7 @@ module tt_um_spi2ws2811x16
   always @*
     strip_counter = n102; // (isignal)
   initial
-    strip_counter = 4'b0000;
+    strip_counter = 3'b000;
   /* src/top.vhdl:31:16  */
   assign n4 = ~rst_n;
   /* src/top.vhdl:35:9  */
@@ -690,19 +690,19 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:58:51  */
   assign n25 = strip_trigger[7]; // extract
   /* src/top.vhdl:85:42  */
-  assign n30 = {28'b0, strip_counter};  //  uext
+  assign n30 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:85:42  */
-  assign n32 = $signed(n30) < $signed(32'b00000000000000000000000000001111);
+  assign n32 = $signed(n30) < $signed(32'b00000000000000000000000000000111);
   /* src/top.vhdl:86:64  */
-  assign n33 = {28'b0, strip_counter};  //  uext
+  assign n33 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:86:64  */
   assign n35 = n33 + 32'b00000000000000000000000000000001;
   /* src/top.vhdl:86:50  */
-  assign n36 = n35[3:0];  // trunc
+  assign n36 = n35[2:0];  // trunc
   /* src/top.vhdl:85:25  */
-  assign n38 = n32 ? n36 : 4'b0000;
+  assign n38 = n32 ? n36 : 3'b000;
   /* src/top.vhdl:94:82  */
-  assign n44 = {28'b0, strip_counter};  //  uext
+  assign n44 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n46 = n44 == 32'b00000000000000000000000000000000;
   /* src/top.vhdl:94:64  */
@@ -710,7 +710,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:94:41  */
   assign n48 = n47 ? 1'b1 : 1'b0;
   /* src/top.vhdl:94:82  */
-  assign n51 = {28'b0, strip_counter};  //  uext
+  assign n51 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n53 = n51 == 32'b00000000000000000000000000000001;
   /* src/top.vhdl:94:64  */
@@ -718,7 +718,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:94:41  */
   assign n55 = n54 ? 1'b1 : 1'b0;
   /* src/top.vhdl:94:82  */
-  assign n58 = {28'b0, strip_counter};  //  uext
+  assign n58 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n60 = n58 == 32'b00000000000000000000000000000010;
   /* src/top.vhdl:94:64  */
@@ -726,7 +726,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:94:41  */
   assign n62 = n61 ? 1'b1 : 1'b0;
   /* src/top.vhdl:94:82  */
-  assign n65 = {28'b0, strip_counter};  //  uext
+  assign n65 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n67 = n65 == 32'b00000000000000000000000000000011;
   /* src/top.vhdl:94:64  */
@@ -734,7 +734,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:94:41  */
   assign n69 = n68 ? 1'b1 : 1'b0;
   /* src/top.vhdl:94:82  */
-  assign n72 = {28'b0, strip_counter};  //  uext
+  assign n72 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n74 = n72 == 32'b00000000000000000000000000000100;
   /* src/top.vhdl:94:64  */
@@ -742,7 +742,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:94:41  */
   assign n76 = n75 ? 1'b1 : 1'b0;
   /* src/top.vhdl:94:82  */
-  assign n79 = {28'b0, strip_counter};  //  uext
+  assign n79 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n81 = n79 == 32'b00000000000000000000000000000101;
   /* src/top.vhdl:94:64  */
@@ -750,7 +750,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:94:41  */
   assign n83 = n82 ? 1'b1 : 1'b0;
   /* src/top.vhdl:94:82  */
-  assign n86 = {28'b0, strip_counter};  //  uext
+  assign n86 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n88 = n86 == 32'b00000000000000000000000000000110;
   /* src/top.vhdl:94:64  */
@@ -758,7 +758,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:94:41  */
   assign n90 = n89 ? 1'b1 : 1'b0;
   /* src/top.vhdl:94:82  */
-  assign n93 = {28'b0, strip_counter};  //  uext
+  assign n93 = {29'b0, strip_counter};  //  uext
   /* src/top.vhdl:94:82  */
   assign n95 = n93 == 32'b00000000000000000000000000000111;
   /* src/top.vhdl:94:64  */
@@ -769,7 +769,7 @@ module tt_um_spi2ws2811x16
   /* src/top.vhdl:84:17  */
   always @(negedge word_ready or posedge rst)
     if (rst)
-      n102 <= 4'b0000;
+      n102 <= 3'b000;
     else
       n102 <= n38;
   /* src/top.vhdl:82:17  */
