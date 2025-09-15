@@ -79,12 +79,12 @@ async def test_top(dut):
     # Test 2: Set operation (set=1, reset=0 -> output=1)
     dut._log.info("Test 2: Start SPI frame")
     with clk_en:
-        cmd = 0b00000001
-        for i in range(8):
-            await ClockCycles(dut.clk, 1, rising=False)
-            bit  = ((cmd >> (7 - i)) & 1) == 1
-            set_copi(bit)
-            await ClockCycles(dut.clk, 1)
+        # cmd = 0b00000001
+        # for i in range(8):
+        #     await ClockCycles(dut.clk, 1, rising=False)
+        #     bit  = ((cmd >> (7 - i)) & 1) == 1
+        #     set_copi(bit)
+        #     await ClockCycles(dut.clk, 1)
 
         # Test 3: Send the data for the first LED
         dut._log.info("Test 3: Send data for first LED")

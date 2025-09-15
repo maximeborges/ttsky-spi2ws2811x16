@@ -37,8 +37,8 @@ begin
 		i_cs => ui_in(0),
 		i_copi => ui_in(1),
 
-		o_command => command,
-		o_command_ready => command_ready,
+		-- o_command => command,
+		-- o_command_ready => command_ready,
 		o_word => word,
 		o_word_ready => word_ready
 	);
