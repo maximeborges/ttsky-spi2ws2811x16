@@ -122,8 +122,8 @@ if __name__ == "__main__":
     )
     runner.build(
         sources=[src_path / "top.vhdl"],
-        hdl_toplevel="tt_um_spi2ws2811x8",
+        hdl_toplevel="tt_um_spi2ws2811x16",
         build_args=["--std=08"],
     )
 
-    runner.test(hdl_toplevel="tt_um_spi2ws2811x8", test_module="top,", waves=True, plusargs=["--vcd=tb.vcd"])
+    runner.test(hdl_toplevel="tt_um_spi2ws2811x16", test_module="top,", waves=True, plusargs=["--vcd=tb.vcd"])

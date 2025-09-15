@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity tt_um_spi2ws2811x8 is
+entity tt_um_spi2ws2811x16 is
 	port(
 		clk		: in 	std_logic;
 		rst_n	: in 	std_logic;
@@ -13,9 +13,9 @@ entity tt_um_spi2ws2811x8 is
 		uo_out	: out   std_logic_vector(7 downto 0);
 		uio_out	: out   std_logic_vector(7 downto 0)
 	);
-end entity tt_um_spi2ws2811x8;
+end entity tt_um_spi2ws2811x16;
 
-architecture rtl of tt_um_spi2ws2811x8 is
+architecture rtl of tt_um_spi2ws2811x16 is
 	constant n_strips : integer := 8;
 
 	signal rst 		     : std_logic;

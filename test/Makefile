@@ -35,7 +35,7 @@ COMPILE_ARGS 		+= -I$(SRC_DIR)
 
 # Include the testbench sources:
 # VERILOG_SOURCES += $(PWD)/tb.v
-TOPLEVEL = tt_um_spi2ws2811x8
+TOPLEVEL = tt_um_spi2ws2811x16
 
 # MODULE is the basename of the Python test file
 MODULE = top
