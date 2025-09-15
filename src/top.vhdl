@@ -9,7 +9,7 @@ entity tt_um_spi2ws2811x16 is
 		ena		: in 	std_logic;
 		ui_in   : in 	std_logic_vector(7 downto 0);
 		uio_in  : in 	std_logic_vector(7 downto 0);
-		uio_oe	: in    std_logic_vector(7 downto 0);
+		uio_oe	: out   std_logic_vector(7 downto 0);
 		uo_out	: out   std_logic_vector(7 downto 0);
 		uio_out	: out   std_logic_vector(7 downto 0)
 	);
@@ -27,6 +27,7 @@ architecture rtl of tt_um_spi2ws2811x16 is
 	signal strip_counter : integer range 0 to 15 := 0;
 begin
 	rst <= not rst_n;
+	uio_oe <= (others => '0');
 
 	spi_controller : entity work.spi
 	port map(

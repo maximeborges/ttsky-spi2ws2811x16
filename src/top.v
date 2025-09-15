@@ -9,245 +9,245 @@ module ws2811_8
   reg bit_data_in;
   reg [7:0] rgb;
   reg running;
-  wire n370;
-  wire n371;
   wire n372;
+  wire n373;
   wire n374;
-  wire [4:0] n376;
-  wire n377;
-  wire [7:0] n378;
-  wire n380;
-  wire [31:0] n381;
-  wire n383;
-  wire [31:0] n384;
+  wire n376;
+  wire [4:0] n378;
+  wire n379;
+  wire [7:0] n380;
+  wire n382;
+  wire [31:0] n383;
+  wire n385;
   wire [31:0] n386;
-  wire [4:0] n387;
   wire [31:0] n388;
-  wire n390;
-  wire n391;
+  wire [4:0] n389;
+  wire [31:0] n390;
   wire n392;
-  wire [31:0] n393;
-  wire n395;
-  wire n396;
+  wire n393;
+  wire n394;
+  wire [31:0] n395;
   wire n397;
+  wire n398;
   wire n399;
-  wire [31:0] n400;
-  wire n402;
-  wire [31:0] n403;
+  wire n401;
+  wire [31:0] n402;
+  wire n404;
   wire [31:0] n405;
-  wire [3:0] n406;
   wire [31:0] n407;
+  wire [3:0] n408;
   wire [31:0] n409;
   wire [31:0] n411;
-  wire [2:0] n412;
-  wire n417;
-  wire [3:0] n419;
-  wire n420;
+  wire [31:0] n413;
+  wire [2:0] n414;
+  wire n419;
+  wire [3:0] n421;
   wire n422;
-  wire n423;
-  wire [4:0] n425;
-  wire [3:0] n426;
-  wire n427;
-  wire n428;
+  wire n424;
+  wire n425;
+  wire [4:0] n427;
+  wire [3:0] n428;
   wire n429;
-  wire [4:0] n430;
-  wire [3:0] n431;
-  wire n432;
-  wire n433;
+  wire n430;
+  wire n431;
+  wire [4:0] n432;
+  wire [3:0] n433;
+  wire n434;
   wire n435;
-  wire [4:0] n437;
-  wire [3:0] n439;
-  wire n441;
-  wire [7:0] n443;
-  wire n445;
-  wire n460;
-  wire [4:0] n461;
-  reg [4:0] n462;
-  wire n463;
-  wire [3:0] n464;
-  reg [3:0] n465;
-  wire n466;
-  wire n467;
-  reg n468;
+  wire n437;
+  wire [4:0] n439;
+  wire [3:0] n441;
+  wire n443;
+  wire [7:0] n445;
+  wire n447;
+  wire n462;
+  wire [4:0] n463;
+  reg [4:0] n464;
+  wire n465;
+  wire [3:0] n466;
+  reg [3:0] n467;
+  wire n468;
   wire n469;
-  wire [7:0] n470;
-  reg [7:0] n471;
-  wire n472;
-  wire n473;
-  reg n474;
-  reg n475;
-  wire n476;
-  assign o_data = n475; //(module output)
+  reg n470;
+  wire n471;
+  wire [7:0] n472;
+  reg [7:0] n473;
+  wire n474;
+  wire n475;
+  reg n476;
+  reg n477;
+  wire n478;
+  assign o_data = n477; //(module output)
   /* ws2811.vhdl:26:16  */
-  assign cyc_count = n462; // (signal)
+  assign cyc_count = n464; // (signal)
   /* ws2811.vhdl:27:16  */
-  assign bit_count = n465; // (signal)
+  assign bit_count = n467; // (signal)
   /* ws2811.vhdl:28:16  */
   always @*
-    bit_data_in = n468; // (isignal)
+    bit_data_in = n470; // (isignal)
   initial
     bit_data_in = 1'b0;
   /* ws2811.vhdl:30:16  */
   always @*
-    rgb = n471; // (isignal)
+    rgb = n473; // (isignal)
   initial
     rgb = 8'b00000000;
   /* ws2811.vhdl:32:16  */
   always @*
-    running = n474; // (isignal)
+    running = n476; // (isignal)
   initial
     running = 1'b0;
   /* ws2811.vhdl:61:44  */
-  assign n370 = ~running;
+  assign n372 = ~running;
   /* ws2811.vhdl:61:50  */
-  assign n371 = i_trigger & n370;
+  assign n373 = i_trigger & n372;
   /* ws2811.vhdl:64:68  */
-  assign n372 = i_pixel_data[7]; // extract
+  assign n374 = i_pixel_data[7]; // extract
   /* ws2811.vhdl:61:33  */
-  assign n374 = n371 ? 1'b1 : n475;
+  assign n376 = n373 ? 1'b1 : n477;
   /* ws2811.vhdl:61:33  */
-  assign n376 = n371 ? 5'b00001 : cyc_count;
+  assign n378 = n373 ? 5'b00001 : cyc_count;
   /* ws2811.vhdl:61:33  */
-  assign n377 = n371 ? n372 : bit_data_in;
+  assign n379 = n373 ? n374 : bit_data_in;
   /* ws2811.vhdl:61:33  */
-  assign n378 = n371 ? i_pixel_data : rgb;
+  assign n380 = n373 ? i_pixel_data : rgb;
   /* ws2811.vhdl:61:33  */
-  assign n380 = n371 ? 1'b1 : running;
+  assign n382 = n373 ? 1'b1 : running;
   /* ws2811.vhdl:70:54  */
-  assign n381 = {27'b0, cyc_count};  //  uext
+  assign n383 = {27'b0, cyc_count};  //  uext
   /* ws2811.vhdl:70:54  */
-  assign n383 = $signed(n381) < $signed(32'b00000000000000000000000000001111);
+  assign n385 = $signed(n383) < $signed(32'b00000000000000000000000000001111);
   /* ws2811.vhdl:71:72  */
-  assign n384 = {27'b0, cyc_count};  //  uext
+  assign n386 = {27'b0, cyc_count};  //  uext
   /* ws2811.vhdl:71:72  */
-  assign n386 = n384 + 32'b00000000000000000000000000000001;
+  assign n388 = n386 + 32'b00000000000000000000000000000001;
   /* ws2811.vhdl:71:62  */
-  assign n387 = n386[4:0];  // trunc
+  assign n389 = n388[4:0];  // trunc
   /* ws2811.vhdl:72:85  */
-  assign n388 = {27'b0, cyc_count};  //  uext
+  assign n390 = {27'b0, cyc_count};  //  uext
   /* ws2811.vhdl:72:85  */
-  assign n390 = n388 == 32'b00000000000000000000000000001010;
+  assign n392 = n390 == 32'b00000000000000000000000000001010;
   /* ws2811.vhdl:72:71  */
-  assign n391 = n390 & bit_data_in;
+  assign n393 = n392 & bit_data_in;
   /* ws2811.vhdl:72:113  */
-  assign n392 = ~bit_data_in;
+  assign n394 = ~bit_data_in;
   /* ws2811.vhdl:72:133  */
-  assign n393 = {27'b0, cyc_count};  //  uext
+  assign n395 = {27'b0, cyc_count};  //  uext
   /* ws2811.vhdl:72:133  */
-  assign n395 = n393 == 32'b00000000000000000000000000000110;
+  assign n397 = n395 == 32'b00000000000000000000000000000110;
   /* ws2811.vhdl:72:119  */
-  assign n396 = n395 & n392;
+  assign n398 = n397 & n394;
   /* ws2811.vhdl:72:97  */
-  assign n397 = n391 | n396;
+  assign n399 = n393 | n398;
   /* ws2811.vhdl:72:49  */
-  assign n399 = n397 ? 1'b0 : n374;
+  assign n401 = n399 ? 1'b0 : n376;
   /* ws2811.vhdl:77:62  */
-  assign n400 = {28'b0, bit_count};  //  uext
+  assign n402 = {28'b0, bit_count};  //  uext
   /* ws2811.vhdl:77:62  */
-  assign n402 = $signed(n400) < $signed(32'b00000000000000000000000000000111);
+  assign n404 = $signed(n402) < $signed(32'b00000000000000000000000000000111);
   /* ws2811.vhdl:78:80  */
-  assign n403 = {28'b0, bit_count};  //  uext
+  assign n405 = {28'b0, bit_count};  //  uext
   /* ws2811.vhdl:78:80  */
-  assign n405 = n403 + 32'b00000000000000000000000000000001;
+  assign n407 = n405 + 32'b00000000000000000000000000000001;
   /* ws2811.vhdl:78:70  */
-  assign n406 = n405[3:0];  // trunc
+  assign n408 = n407[3:0];  // trunc
   /* ws2811.vhdl:79:87  */
-  assign n407 = {28'b0, bit_count};  //  uext
+  assign n409 = {28'b0, bit_count};  //  uext
   /* ws2811.vhdl:79:87  */
-  assign n409 = 32'b00000000000000000000000000000111 - n407;
+  assign n411 = 32'b00000000000000000000000000000111 - n409;
   /* ws2811.vhdl:79:99  */
-  assign n411 = n409 - 32'b00000000000000000000000000000001;
+  assign n413 = n411 - 32'b00000000000000000000000000000001;
   /* ws2811.vhdl:79:99  */
-  assign n412 = n411[2:0];  // trunc
+  assign n414 = n413[2:0];  // trunc
   /* ws2811.vhdl:77:49  */
-  assign n417 = n402 ? 1'b1 : 1'b0;
+  assign n419 = n404 ? 1'b1 : 1'b0;
   /* ws2811.vhdl:77:49  */
-  assign n419 = n402 ? n406 : 4'b0000;
+  assign n421 = n404 ? n408 : 4'b0000;
   /* ws2811.vhdl:77:49  */
-  assign n420 = n402 ? n476 : n377;
+  assign n422 = n404 ? n478 : n379;
   /* ws2811.vhdl:77:49  */
-  assign n422 = n402 ? n380 : 1'b0;
+  assign n424 = n404 ? n382 : 1'b0;
   /* ws2811.vhdl:70:41  */
-  assign n423 = n383 ? n399 : n417;
+  assign n425 = n385 ? n401 : n419;
   /* ws2811.vhdl:70:41  */
-  assign n425 = n383 ? n387 : 5'b00000;
+  assign n427 = n385 ? n389 : 5'b00000;
   /* ws2811.vhdl:70:41  */
-  assign n426 = n383 ? bit_count : n419;
+  assign n428 = n385 ? bit_count : n421;
   /* ws2811.vhdl:70:41  */
-  assign n427 = n383 ? n377 : n420;
+  assign n429 = n385 ? n379 : n422;
   /* ws2811.vhdl:70:41  */
-  assign n428 = n383 ? n380 : n422;
+  assign n430 = n385 ? n382 : n424;
   /* ws2811.vhdl:69:33  */
-  assign n429 = running ? n423 : n374;
+  assign n431 = running ? n425 : n376;
   /* ws2811.vhdl:69:33  */
-  assign n430 = running ? n425 : n376;
+  assign n432 = running ? n427 : n378;
   /* ws2811.vhdl:69:33  */
-  assign n431 = running ? n426 : bit_count;
+  assign n433 = running ? n428 : bit_count;
   /* ws2811.vhdl:69:33  */
-  assign n432 = running ? n427 : n377;
+  assign n434 = running ? n429 : n379;
   /* ws2811.vhdl:69:33  */
-  assign n433 = running ? n428 : n380;
+  assign n435 = running ? n430 : n382;
   /* ws2811.vhdl:52:25  */
-  assign n435 = i_reset ? 1'b0 : n429;
+  assign n437 = i_reset ? 1'b0 : n431;
   /* ws2811.vhdl:52:25  */
-  assign n437 = i_reset ? 5'b00000 : n430;
+  assign n439 = i_reset ? 5'b00000 : n432;
   /* ws2811.vhdl:52:25  */
-  assign n439 = i_reset ? 4'b0000 : n431;
+  assign n441 = i_reset ? 4'b0000 : n433;
   /* ws2811.vhdl:52:25  */
-  assign n441 = i_reset ? 1'b0 : n432;
+  assign n443 = i_reset ? 1'b0 : n434;
   /* ws2811.vhdl:52:25  */
-  assign n443 = i_reset ? 8'b00000000 : n378;
+  assign n445 = i_reset ? 8'b00000000 : n380;
   /* ws2811.vhdl:52:25  */
-  assign n445 = i_reset ? 1'b0 : n433;
+  assign n447 = i_reset ? 1'b0 : n435;
   /* ws2811.vhdl:47:9  */
-  assign n460 = ~i_reset;
+  assign n462 = ~i_reset;
   /* ws2811.vhdl:51:17  */
-  assign n461 = n460 ? n437 : cyc_count;
+  assign n463 = n462 ? n439 : cyc_count;
   /* ws2811.vhdl:51:17  */
   always @(posedge i_clock)
-    n462 <= n461;
+    n464 <= n463;
   /* ws2811.vhdl:47:9  */
-  assign n463 = ~i_reset;
+  assign n465 = ~i_reset;
   /* ws2811.vhdl:51:17  */
-  assign n464 = n463 ? n439 : bit_count;
+  assign n466 = n465 ? n441 : bit_count;
   /* ws2811.vhdl:51:17  */
   always @(posedge i_clock)
-    n465 <= n464;
+    n467 <= n466;
   /* ws2811.vhdl:47:9  */
-  assign n466 = ~i_reset;
+  assign n468 = ~i_reset;
   /* ws2811.vhdl:51:17  */
-  assign n467 = n466 ? n441 : bit_data_in;
+  assign n469 = n468 ? n443 : bit_data_in;
   /* ws2811.vhdl:51:17  */
   always @(posedge i_clock)
-    n468 <= n467;
+    n470 <= n469;
   initial
-    n468 = 1'b0;
+    n470 = 1'b0;
   /* ws2811.vhdl:47:9  */
-  assign n469 = ~i_reset;
+  assign n471 = ~i_reset;
   /* ws2811.vhdl:51:17  */
-  assign n470 = n469 ? n443 : rgb;
+  assign n472 = n471 ? n445 : rgb;
   /* ws2811.vhdl:51:17  */
   always @(posedge i_clock)
-    n471 <= n470;
+    n473 <= n472;
   initial
-    n471 = 8'b00000000;
+    n473 = 8'b00000000;
   /* ws2811.vhdl:47:9  */
-  assign n472 = ~i_reset;
+  assign n474 = ~i_reset;
   /* ws2811.vhdl:51:17  */
-  assign n473 = n472 ? n445 : running;
+  assign n475 = n474 ? n447 : running;
   /* ws2811.vhdl:51:17  */
   always @(posedge i_clock)
-    n474 <= n473;
+    n476 <= n475;
   initial
-    n474 = 1'b0;
+    n476 = 1'b0;
   /* ws2811.vhdl:51:17  */
   always @(posedge i_clock or posedge i_reset)
     if (i_reset)
-      n475 <= 1'b0;
+      n477 <= 1'b0;
     else
-      n475 <= n435;
+      n477 <= n437;
   /* ws2811.vhdl:79:99  */
-  assign n476 = rgb[n412 * 1 +: 1]; //(Bmux)
+  assign n478 = rgb[n414 * 1 +: 1]; //(Bmux)
 endmodule
 
 module spi_8
@@ -263,65 +263,63 @@ module spi_8
   reg [7:0] current_command;
   reg [7:0] current_word;
   wire [1:0] state;
-  wire n184;
-  wire [2:0] n185;
-  wire [31:0] n188;
-  wire n190;
-  wire [31:0] n191;
+  wire n186;
+  wire [2:0] n187;
+  wire [31:0] n190;
+  wire n192;
   wire [31:0] n193;
-  wire [3:0] n194;
-  wire [7:0] n195;
-  wire n197;
-  wire [3:0] n199;
-  wire [1:0] n201;
-  wire [7:0] n202;
-  wire n203;
-  wire [3:0] n204;
-  wire [7:0] n205;
-  wire [1:0] n207;
-  wire n209;
-  wire n210;
-  wire [31:0] n211;
-  wire n213;
-  wire [6:0] n214;
-  wire [7:0] n215;
-  wire [2:0] n216;
+  wire [31:0] n195;
+  wire [3:0] n196;
+  wire [7:0] n197;
+  wire n199;
+  wire [3:0] n201;
+  wire [1:0] n203;
+  wire [7:0] n204;
+  wire n205;
+  wire [3:0] n206;
+  wire [7:0] n207;
+  wire [1:0] n209;
+  wire n211;
+  wire n212;
+  wire [31:0] n213;
+  wire n215;
+  wire [6:0] n216;
+  wire [7:0] n217;
   wire [2:0] n218;
-  wire [31:0] n221;
+  wire [2:0] n220;
   wire [31:0] n223;
-  wire [3:0] n224;
-  wire [7:0] n225;
-  wire n228;
-  wire [3:0] n230;
-  wire [7:0] n231;
-  wire n233;
-  wire [7:0] n234;
+  wire [31:0] n225;
+  wire [3:0] n226;
+  wire [7:0] n227;
+  wire n230;
+  wire [3:0] n232;
+  wire [7:0] n233;
   wire n235;
-  wire [3:0] n236;
-  wire [7:0] n237;
-  wire [1:0] n239;
-  wire n241;
-  wire [1:0] n243;
-  wire n245;
-  wire [2:0] n246;
-  reg [7:0] n247;
-  reg n249;
-  reg [7:0] n250;
-  reg n252;
-  reg [3:0] n254;
-  reg [7:0] n255;
-  reg [7:0] n256;
-  reg [1:0] n258;
-  reg [3:0] n284;
-  reg [7:0] n285;
-  reg [7:0] n286;
-  reg [1:0] n287;
+  wire [7:0] n236;
+  wire n237;
+  wire [3:0] n238;
+  wire [7:0] n239;
+  wire [1:0] n241;
+  wire n243;
+  wire [1:0] n245;
+  wire n247;
+  wire [2:0] n248;
+  reg [7:0] n249;
+  reg n251;
+  reg [7:0] n252;
+  reg n254;
+  reg [3:0] n256;
+  reg [7:0] n257;
+  reg [7:0] n258;
+  reg [1:0] n260;
+  reg [3:0] n286;
+  reg [7:0] n287;
   reg [7:0] n288;
-  reg n289;
+  reg [1:0] n289;
   reg [7:0] n290;
   reg n291;
-  wire n292;
-  wire n293;
+  reg [7:0] n292;
+  reg n293;
   wire n294;
   wire n295;
   wire n296;
@@ -354,9 +352,9 @@ module spi_8
   wire n323;
   wire n324;
   wire n325;
-  wire [7:0] n326;
+  wire n326;
   wire n327;
-  wire n328;
+  wire [7:0] n328;
   wire n329;
   wire n330;
   wire n331;
@@ -389,343 +387,345 @@ module spi_8
   wire n358;
   wire n359;
   wire n360;
-  wire [7:0] n361;
-  assign o_command = n288; //(module output)
-  assign o_command_ready = n289; //(module output)
-  assign o_word = n290; //(module output)
-  assign o_word_ready = n291; //(module output)
+  wire n361;
+  wire n362;
+  wire [7:0] n363;
+  assign o_command = n290; //(module output)
+  assign o_command_ready = n291; //(module output)
+  assign o_word = n292; //(module output)
+  assign o_word_ready = n293; //(module output)
   /* spi.vhdl:28:12  */
   always @*
-    bit_count = n284; // (isignal)
+    bit_count = n286; // (isignal)
   initial
     bit_count = 4'b0000;
   /* spi.vhdl:29:12  */
   always @*
-    current_command = n285; // (isignal)
+    current_command = n287; // (isignal)
   initial
     current_command = 8'b00000000;
   /* spi.vhdl:30:12  */
   always @*
-    current_word = n286; // (isignal)
+    current_word = n288; // (isignal)
   initial
     current_word = 8'b00000000;
   /* spi.vhdl:38:12  */
-  assign state = n287; // (signal)
+  assign state = n289; // (signal)
   /* spi.vhdl:55:29  */
-  assign n184 = ~i_cs;
+  assign n186 = ~i_cs;
   /* spi.vhdl:58:41  */
-  assign n185 = bit_count[2:0];  // trunc
+  assign n187 = bit_count[2:0];  // trunc
   /* spi.vhdl:59:38  */
-  assign n188 = {28'b0, bit_count};  //  uext
+  assign n190 = {28'b0, bit_count};  //  uext
   /* spi.vhdl:59:38  */
-  assign n190 = n188 == 32'b00000000000000000000000000000111;
+  assign n192 = n190 == 32'b00000000000000000000000000000111;
   /* spi.vhdl:65:52  */
-  assign n191 = {28'b0, bit_count};  //  uext
+  assign n193 = {28'b0, bit_count};  //  uext
   /* spi.vhdl:65:52  */
-  assign n193 = n191 + 32'b00000000000000000000000000000001;
+  assign n195 = n193 + 32'b00000000000000000000000000000001;
   /* spi.vhdl:65:42  */
-  assign n194 = n193[3:0];  // trunc
+  assign n196 = n195[3:0];  // trunc
   /* spi.vhdl:59:25  */
-  assign n195 = n190 ? current_command : n288;
+  assign n197 = n192 ? current_command : n290;
   /* spi.vhdl:59:25  */
-  assign n197 = n190 ? 1'b1 : n289;
+  assign n199 = n192 ? 1'b1 : n291;
   /* spi.vhdl:59:25  */
-  assign n199 = n190 ? 4'b0000 : n194;
+  assign n201 = n192 ? 4'b0000 : n196;
   /* spi.vhdl:59:25  */
-  assign n201 = n190 ? 2'b10 : state;
+  assign n203 = n192 ? 2'b10 : state;
   /* spi.vhdl:55:21  */
-  assign n202 = n184 ? n288 : n195;
+  assign n204 = n186 ? n290 : n197;
   /* spi.vhdl:55:21  */
-  assign n203 = n184 ? n289 : n197;
+  assign n205 = n186 ? n291 : n199;
   /* spi.vhdl:55:21  */
-  assign n204 = n184 ? bit_count : n199;
+  assign n206 = n186 ? bit_count : n201;
   /* spi.vhdl:55:21  */
-  assign n205 = n184 ? current_command : n326;
+  assign n207 = n186 ? current_command : n328;
   /* spi.vhdl:55:21  */
-  assign n207 = n184 ? 2'b00 : n201;
+  assign n209 = n186 ? 2'b00 : n203;
   /* spi.vhdl:54:17  */
-  assign n209 = state == 2'b01;
+  assign n211 = state == 2'b01;
   /* spi.vhdl:70:29  */
-  assign n210 = ~i_cs;
+  assign n212 = ~i_cs;
   /* spi.vhdl:75:38  */
-  assign n211 = {28'b0, bit_count};  //  uext
+  assign n213 = {28'b0, bit_count};  //  uext
   /* spi.vhdl:75:38  */
-  assign n213 = n211 == 32'b00000000000000000000000000000111;
+  assign n215 = n213 == 32'b00000000000000000000000000000111;
   /* spi.vhdl:76:51  */
-  assign n214 = current_word[7:1]; // extract
+  assign n216 = current_word[7:1]; // extract
   /* spi.vhdl:76:69  */
-  assign n215 = {n214, i_copi};
+  assign n217 = {n216, i_copi};
   /* spi.vhdl:81:42  */
-  assign n216 = bit_count[2:0];  // trunc
+  assign n218 = bit_count[2:0];  // trunc
   /* spi.vhdl:81:42  */
-  assign n218 = 3'b111 - n216;
+  assign n220 = 3'b111 - n218;
   /* spi.vhdl:86:52  */
-  assign n221 = {28'b0, bit_count};  //  uext
+  assign n223 = {28'b0, bit_count};  //  uext
   /* spi.vhdl:86:52  */
-  assign n223 = n221 + 32'b00000000000000000000000000000001;
+  assign n225 = n223 + 32'b00000000000000000000000000000001;
   /* spi.vhdl:86:42  */
-  assign n224 = n223[3:0];  // trunc
+  assign n226 = n225[3:0];  // trunc
   /* spi.vhdl:75:25  */
-  assign n225 = n213 ? n215 : n290;
+  assign n227 = n215 ? n217 : n292;
   /* spi.vhdl:75:25  */
-  assign n228 = n213 ? 1'b1 : 1'b0;
+  assign n230 = n215 ? 1'b1 : 1'b0;
   /* spi.vhdl:75:25  */
-  assign n230 = n213 ? 4'b0000 : n224;
+  assign n232 = n215 ? 4'b0000 : n226;
   /* spi.vhdl:75:25  */
-  assign n231 = n213 ? current_word : n361;
+  assign n233 = n215 ? current_word : n363;
   /* spi.vhdl:70:21  */
-  assign n233 = n210 ? n289 : 1'b0;
+  assign n235 = n212 ? n291 : 1'b0;
   /* spi.vhdl:70:21  */
-  assign n234 = n210 ? n290 : n225;
+  assign n236 = n212 ? n292 : n227;
   /* spi.vhdl:70:21  */
-  assign n235 = n210 ? n291 : n228;
+  assign n237 = n212 ? n293 : n230;
   /* spi.vhdl:70:21  */
-  assign n236 = n210 ? bit_count : n230;
+  assign n238 = n212 ? bit_count : n232;
   /* spi.vhdl:70:21  */
-  assign n237 = n210 ? current_word : n231;
+  assign n239 = n212 ? current_word : n233;
   /* spi.vhdl:70:21  */
-  assign n239 = n210 ? 2'b00 : state;
+  assign n241 = n212 ? 2'b00 : state;
   /* spi.vhdl:69:17  */
-  assign n241 = state == 2'b10;
+  assign n243 = state == 2'b10;
   /* spi.vhdl:94:21  */
-  assign n243 = i_cs ? 2'b01 : state;
+  assign n245 = i_cs ? 2'b01 : state;
   /* spi.vhdl:90:17  */
-  assign n245 = state == 2'b00;
-  assign n246 = {n245, n241, n209};
+  assign n247 = state == 2'b00;
+  assign n248 = {n247, n243, n211};
   /* spi.vhdl:53:13  */
   always @*
-    case (n246)
-      3'b100: n247 = n288;
-      3'b010: n247 = n288;
-      3'b001: n247 = n202;
-      default: n247 = n288;
+    case (n248)
+      3'b100: n249 = n290;
+      3'b010: n249 = n290;
+      3'b001: n249 = n204;
+      default: n249 = n290;
     endcase
   /* spi.vhdl:53:13  */
   always @*
-    case (n246)
-      3'b100: n249 = 1'b0;
-      3'b010: n249 = n233;
-      3'b001: n249 = n203;
-      default: n249 = n289;
+    case (n248)
+      3'b100: n251 = 1'b0;
+      3'b010: n251 = n235;
+      3'b001: n251 = n205;
+      default: n251 = n291;
     endcase
   /* spi.vhdl:53:13  */
   always @*
-    case (n246)
-      3'b100: n250 = n290;
-      3'b010: n250 = n234;
-      3'b001: n250 = n290;
-      default: n250 = n290;
+    case (n248)
+      3'b100: n252 = n292;
+      3'b010: n252 = n236;
+      3'b001: n252 = n292;
+      default: n252 = n292;
     endcase
   /* spi.vhdl:53:13  */
   always @*
-    case (n246)
-      3'b100: n252 = 1'b0;
-      3'b010: n252 = n235;
-      3'b001: n252 = n291;
-      default: n252 = n291;
+    case (n248)
+      3'b100: n254 = 1'b0;
+      3'b010: n254 = n237;
+      3'b001: n254 = n293;
+      default: n254 = n293;
     endcase
   /* spi.vhdl:53:13  */
   always @*
-    case (n246)
-      3'b100: n254 = 4'b0000;
-      3'b010: n254 = n236;
-      3'b001: n254 = n204;
-      default: n254 = bit_count;
+    case (n248)
+      3'b100: n256 = 4'b0000;
+      3'b010: n256 = n238;
+      3'b001: n256 = n206;
+      default: n256 = bit_count;
     endcase
   /* spi.vhdl:53:13  */
   always @*
-    case (n246)
-      3'b100: n255 = current_command;
-      3'b010: n255 = current_command;
-      3'b001: n255 = n205;
-      default: n255 = current_command;
+    case (n248)
+      3'b100: n257 = current_command;
+      3'b010: n257 = current_command;
+      3'b001: n257 = n207;
+      default: n257 = current_command;
     endcase
   /* spi.vhdl:53:13  */
   always @*
-    case (n246)
-      3'b100: n256 = current_word;
-      3'b010: n256 = n237;
-      3'b001: n256 = current_word;
-      default: n256 = current_word;
-    endcase
-  /* spi.vhdl:53:13  */
-  always @*
-    case (n246)
-      3'b100: n258 = n243;
+    case (n248)
+      3'b100: n258 = current_word;
       3'b010: n258 = n239;
-      3'b001: n258 = n207;
-      default: n258 = 2'b00;
+      3'b001: n258 = current_word;
+      default: n258 = current_word;
+    endcase
+  /* spi.vhdl:53:13  */
+  always @*
+    case (n248)
+      3'b100: n260 = n245;
+      3'b010: n260 = n241;
+      3'b001: n260 = n209;
+      default: n260 = 2'b00;
     endcase
   /* spi.vhdl:52:9  */
   always @(posedge i_clock or posedge i_reset)
     if (i_reset)
-      n284 <= 4'b0000;
-    else
-      n284 <= n254;
-  /* spi.vhdl:52:9  */
-  always @(posedge i_clock or posedge i_reset)
-    if (i_reset)
-      n285 <= 8'b00000000;
-    else
-      n285 <= n255;
-  /* spi.vhdl:52:9  */
-  always @(posedge i_clock or posedge i_reset)
-    if (i_reset)
-      n286 <= 8'b00000000;
+      n286 <= 4'b0000;
     else
       n286 <= n256;
   /* spi.vhdl:52:9  */
   always @(posedge i_clock or posedge i_reset)
     if (i_reset)
-      n287 <= 2'b01;
+      n287 <= 8'b00000000;
     else
-      n287 <= n258;
+      n287 <= n257;
   /* spi.vhdl:52:9  */
   always @(posedge i_clock or posedge i_reset)
     if (i_reset)
       n288 <= 8'b00000000;
     else
-      n288 <= n247;
+      n288 <= n258;
   /* spi.vhdl:52:9  */
   always @(posedge i_clock or posedge i_reset)
     if (i_reset)
-      n289 <= 1'b0;
+      n289 <= 2'b01;
     else
-      n289 <= n249;
+      n289 <= n260;
   /* spi.vhdl:52:9  */
   always @(posedge i_clock or posedge i_reset)
     if (i_reset)
       n290 <= 8'b00000000;
     else
-      n290 <= n250;
+      n290 <= n249;
   /* spi.vhdl:52:9  */
   always @(posedge i_clock or posedge i_reset)
     if (i_reset)
       n291 <= 1'b0;
     else
-      n291 <= n252;
+      n291 <= n251;
+  /* spi.vhdl:52:9  */
+  always @(posedge i_clock or posedge i_reset)
+    if (i_reset)
+      n292 <= 8'b00000000;
+    else
+      n292 <= n252;
+  /* spi.vhdl:52:9  */
+  always @(posedge i_clock or posedge i_reset)
+    if (i_reset)
+      n293 <= 1'b0;
+    else
+      n293 <= n254;
   /* spi.vhdl:58:25  */
-  assign n292 = n185[2]; // extract
-  /* spi.vhdl:58:25  */
-  assign n293 = ~n292;
-  /* spi.vhdl:58:25  */
-  assign n294 = n185[1]; // extract
+  assign n294 = n187[2]; // extract
   /* spi.vhdl:58:25  */
   assign n295 = ~n294;
   /* spi.vhdl:58:25  */
-  assign n296 = n293 & n295;
+  assign n296 = n187[1]; // extract
   /* spi.vhdl:58:25  */
-  assign n297 = n293 & n294;
+  assign n297 = ~n296;
   /* spi.vhdl:58:25  */
-  assign n298 = n292 & n295;
+  assign n298 = n295 & n297;
   /* spi.vhdl:58:25  */
-  assign n299 = n292 & n294;
+  assign n299 = n295 & n296;
   /* spi.vhdl:58:25  */
-  assign n300 = n185[0]; // extract
+  assign n300 = n294 & n297;
   /* spi.vhdl:58:25  */
-  assign n301 = ~n300;
+  assign n301 = n294 & n296;
   /* spi.vhdl:58:25  */
-  assign n302 = n296 & n301;
+  assign n302 = n187[0]; // extract
   /* spi.vhdl:58:25  */
-  assign n303 = n296 & n300;
+  assign n303 = ~n302;
   /* spi.vhdl:58:25  */
-  assign n304 = n297 & n301;
+  assign n304 = n298 & n303;
   /* spi.vhdl:58:25  */
-  assign n305 = n297 & n300;
+  assign n305 = n298 & n302;
   /* spi.vhdl:58:25  */
-  assign n306 = n298 & n301;
+  assign n306 = n299 & n303;
   /* spi.vhdl:58:25  */
-  assign n307 = n298 & n300;
+  assign n307 = n299 & n302;
   /* spi.vhdl:58:25  */
-  assign n308 = n299 & n301;
+  assign n308 = n300 & n303;
   /* spi.vhdl:58:25  */
-  assign n309 = n299 & n300;
-  assign n310 = current_command[0]; // extract
+  assign n309 = n300 & n302;
   /* spi.vhdl:58:25  */
-  assign n311 = n302 ? i_copi : n310;
-  assign n312 = current_command[1]; // extract
+  assign n310 = n301 & n303;
   /* spi.vhdl:58:25  */
-  assign n313 = n303 ? i_copi : n312;
-  assign n314 = current_command[2]; // extract
+  assign n311 = n301 & n302;
+  assign n312 = current_command[0]; // extract
   /* spi.vhdl:58:25  */
-  assign n315 = n304 ? i_copi : n314;
-  assign n316 = current_command[3]; // extract
+  assign n313 = n304 ? i_copi : n312;
+  assign n314 = current_command[1]; // extract
   /* spi.vhdl:58:25  */
-  assign n317 = n305 ? i_copi : n316;
-  assign n318 = current_command[4]; // extract
+  assign n315 = n305 ? i_copi : n314;
+  assign n316 = current_command[2]; // extract
   /* spi.vhdl:58:25  */
-  assign n319 = n306 ? i_copi : n318;
-  assign n320 = current_command[5]; // extract
+  assign n317 = n306 ? i_copi : n316;
+  assign n318 = current_command[3]; // extract
   /* spi.vhdl:58:25  */
-  assign n321 = n307 ? i_copi : n320;
-  assign n322 = current_command[6]; // extract
+  assign n319 = n307 ? i_copi : n318;
+  assign n320 = current_command[4]; // extract
   /* spi.vhdl:58:25  */
-  assign n323 = n308 ? i_copi : n322;
-  assign n324 = current_command[7]; // extract
+  assign n321 = n308 ? i_copi : n320;
+  assign n322 = current_command[5]; // extract
   /* spi.vhdl:58:25  */
-  assign n325 = n309 ? i_copi : n324;
-  assign n326 = {n325, n323, n321, n319, n317, n315, n313, n311};
+  assign n323 = n309 ? i_copi : n322;
+  assign n324 = current_command[6]; // extract
+  /* spi.vhdl:58:25  */
+  assign n325 = n310 ? i_copi : n324;
+  assign n326 = current_command[7]; // extract
+  /* spi.vhdl:58:25  */
+  assign n327 = n311 ? i_copi : n326;
+  assign n328 = {n327, n325, n323, n321, n319, n317, n315, n313};
   /* spi.vhdl:81:29  */
-  assign n327 = n218[2]; // extract
-  /* spi.vhdl:81:29  */
-  assign n328 = ~n327;
-  /* spi.vhdl:81:29  */
-  assign n329 = n218[1]; // extract
+  assign n329 = n220[2]; // extract
   /* spi.vhdl:81:29  */
   assign n330 = ~n329;
   /* spi.vhdl:81:29  */
-  assign n331 = n328 & n330;
+  assign n331 = n220[1]; // extract
   /* spi.vhdl:81:29  */
-  assign n332 = n328 & n329;
+  assign n332 = ~n331;
   /* spi.vhdl:81:29  */
-  assign n333 = n327 & n330;
+  assign n333 = n330 & n332;
   /* spi.vhdl:81:29  */
-  assign n334 = n327 & n329;
+  assign n334 = n330 & n331;
   /* spi.vhdl:81:29  */
-  assign n335 = n218[0]; // extract
+  assign n335 = n329 & n332;
   /* spi.vhdl:81:29  */
-  assign n336 = ~n335;
+  assign n336 = n329 & n331;
   /* spi.vhdl:81:29  */
-  assign n337 = n331 & n336;
+  assign n337 = n220[0]; // extract
   /* spi.vhdl:81:29  */
-  assign n338 = n331 & n335;
+  assign n338 = ~n337;
   /* spi.vhdl:81:29  */
-  assign n339 = n332 & n336;
+  assign n339 = n333 & n338;
   /* spi.vhdl:81:29  */
-  assign n340 = n332 & n335;
+  assign n340 = n333 & n337;
   /* spi.vhdl:81:29  */
-  assign n341 = n333 & n336;
+  assign n341 = n334 & n338;
   /* spi.vhdl:81:29  */
-  assign n342 = n333 & n335;
+  assign n342 = n334 & n337;
   /* spi.vhdl:81:29  */
-  assign n343 = n334 & n336;
+  assign n343 = n335 & n338;
   /* spi.vhdl:81:29  */
-  assign n344 = n334 & n335;
-  assign n345 = current_word[0]; // extract
+  assign n344 = n335 & n337;
   /* spi.vhdl:81:29  */
-  assign n346 = n337 ? i_copi : n345;
-  assign n347 = current_word[1]; // extract
+  assign n345 = n336 & n338;
   /* spi.vhdl:81:29  */
-  assign n348 = n338 ? i_copi : n347;
-  assign n349 = current_word[2]; // extract
+  assign n346 = n336 & n337;
+  assign n347 = current_word[0]; // extract
   /* spi.vhdl:81:29  */
-  assign n350 = n339 ? i_copi : n349;
-  assign n351 = current_word[3]; // extract
+  assign n348 = n339 ? i_copi : n347;
+  assign n349 = current_word[1]; // extract
   /* spi.vhdl:81:29  */
-  assign n352 = n340 ? i_copi : n351;
-  assign n353 = current_word[4]; // extract
+  assign n350 = n340 ? i_copi : n349;
+  assign n351 = current_word[2]; // extract
   /* spi.vhdl:81:29  */
-  assign n354 = n341 ? i_copi : n353;
-  assign n355 = current_word[5]; // extract
+  assign n352 = n341 ? i_copi : n351;
+  assign n353 = current_word[3]; // extract
   /* spi.vhdl:81:29  */
-  assign n356 = n342 ? i_copi : n355;
-  assign n357 = current_word[6]; // extract
+  assign n354 = n342 ? i_copi : n353;
+  assign n355 = current_word[4]; // extract
   /* spi.vhdl:81:29  */
-  assign n358 = n343 ? i_copi : n357;
-  assign n359 = current_word[7]; // extract
+  assign n356 = n343 ? i_copi : n355;
+  assign n357 = current_word[5]; // extract
   /* spi.vhdl:81:29  */
-  assign n360 = n344 ? i_copi : n359;
-  assign n361 = {n360, n358, n356, n354, n352, n350, n348, n346};
+  assign n358 = n344 ? i_copi : n357;
+  assign n359 = current_word[6]; // extract
+  /* spi.vhdl:81:29  */
+  assign n360 = n345 ? i_copi : n359;
+  assign n361 = current_word[7]; // extract
+  /* spi.vhdl:81:29  */
+  assign n362 = n346 ? i_copi : n361;
+  assign n363 = {n362, n360, n358, n356, n354, n352, n350, n348};
 endmodule
 
 module tt_um_spi2ws2811x16
@@ -734,7 +734,7 @@ module tt_um_spi2ws2811x16
    input  ena,
    input  [7:0] ui_in,
    input  [7:0] uio_in,
-   input  [7:0] uio_oe,
+   output [7:0] uio_oe,
    output [7:0] uo_out,
    output [7:0] uio_out);
   wire rst;
@@ -742,437 +742,439 @@ module tt_um_spi2ws2811x16
   wire word_ready;
   wire [15:0] strip_trigger;
   reg [3:0] strip_counter;
-  wire n3;
+  wire n4;
+  localparam [7:0] n5 = 8'b00000000;
   wire [7:0] \spi_controller.o_command ;
   wire \spi_controller.o_command_ready ;
-  wire n4;
-  wire n5;
+  wire n6;
+  wire n7;
   wire \led_o_n1_led.o_data ;
-  wire n10;
-  wire \led_o_n2_led.o_data ;
   wire n12;
-  wire \led_o_n3_led.o_data ;
+  wire \led_o_n2_led.o_data ;
   wire n14;
-  wire \led_o_n4_led.o_data ;
+  wire \led_o_n3_led.o_data ;
   wire n16;
-  wire \led_o_n5_led.o_data ;
+  wire \led_o_n4_led.o_data ;
   wire n18;
-  wire \led_o_n6_led.o_data ;
+  wire \led_o_n5_led.o_data ;
   wire n20;
-  wire \led_o_n7_led.o_data ;
+  wire \led_o_n6_led.o_data ;
   wire n22;
-  wire \led_o_n8_led.o_data ;
+  wire \led_o_n7_led.o_data ;
   wire n24;
-  wire \led_io_n1_led.o_data ;
+  wire \led_o_n8_led.o_data ;
   wire n26;
-  wire \led_io_n2_led.o_data ;
+  wire \led_io_n1_led.o_data ;
   wire n28;
-  wire \led_io_n3_led.o_data ;
+  wire \led_io_n2_led.o_data ;
   wire n30;
-  wire \led_io_n4_led.o_data ;
+  wire \led_io_n3_led.o_data ;
   wire n32;
-  wire \led_io_n5_led.o_data ;
+  wire \led_io_n4_led.o_data ;
   wire n34;
-  wire \led_io_n6_led.o_data ;
+  wire \led_io_n5_led.o_data ;
   wire n36;
-  wire \led_io_n7_led.o_data ;
+  wire \led_io_n6_led.o_data ;
   wire n38;
-  wire \led_io_n8_led.o_data ;
+  wire \led_io_n7_led.o_data ;
   wire n40;
-  wire [31:0] n45;
-  wire n47;
-  wire [31:0] n48;
+  wire \led_io_n8_led.o_data ;
+  wire n42;
+  wire [31:0] n47;
+  wire n49;
   wire [31:0] n50;
-  wire [3:0] n51;
+  wire [31:0] n52;
   wire [3:0] n53;
-  wire [31:0] n59;
-  wire n61;
-  wire n62;
+  wire [3:0] n55;
+  wire [31:0] n61;
   wire n63;
-  wire [31:0] n66;
-  wire n68;
-  wire n69;
+  wire n64;
+  wire n65;
+  wire [31:0] n68;
   wire n70;
-  wire [31:0] n73;
-  wire n75;
-  wire n76;
+  wire n71;
+  wire n72;
+  wire [31:0] n75;
   wire n77;
-  wire [31:0] n80;
-  wire n82;
-  wire n83;
+  wire n78;
+  wire n79;
+  wire [31:0] n82;
   wire n84;
-  wire [31:0] n87;
-  wire n89;
-  wire n90;
+  wire n85;
+  wire n86;
+  wire [31:0] n89;
   wire n91;
-  wire [31:0] n94;
-  wire n96;
-  wire n97;
+  wire n92;
+  wire n93;
+  wire [31:0] n96;
   wire n98;
-  wire [31:0] n101;
-  wire n103;
-  wire n104;
+  wire n99;
+  wire n100;
+  wire [31:0] n103;
   wire n105;
-  wire [31:0] n108;
-  wire n110;
-  wire n111;
+  wire n106;
+  wire n107;
+  wire [31:0] n110;
   wire n112;
-  wire [31:0] n115;
-  wire n117;
-  wire n118;
+  wire n113;
+  wire n114;
+  wire [31:0] n117;
   wire n119;
-  wire [31:0] n122;
-  wire n124;
-  wire n125;
+  wire n120;
+  wire n121;
+  wire [31:0] n124;
   wire n126;
-  wire [31:0] n129;
-  wire n131;
-  wire n132;
+  wire n127;
+  wire n128;
+  wire [31:0] n131;
   wire n133;
-  wire [31:0] n136;
-  wire n138;
-  wire n139;
+  wire n134;
+  wire n135;
+  wire [31:0] n138;
   wire n140;
-  wire [31:0] n143;
-  wire n145;
-  wire n146;
+  wire n141;
+  wire n142;
+  wire [31:0] n145;
   wire n147;
-  wire [31:0] n150;
-  wire n152;
-  wire n153;
+  wire n148;
+  wire n149;
+  wire [31:0] n152;
   wire n154;
-  wire [31:0] n157;
-  wire n159;
-  wire n160;
+  wire n155;
+  wire n156;
+  wire [31:0] n159;
   wire n161;
-  wire [31:0] n164;
-  wire n166;
-  wire n167;
+  wire n162;
+  wire n163;
+  wire [31:0] n166;
   wire n168;
-  wire [15:0] n170;
-  reg [3:0] n171;
-  wire [7:0] n172;
-  wire [7:0] n173;
-  assign uo_out = n172; //(module output)
-  assign uio_out = n173; //(module output)
+  wire n169;
+  wire n170;
+  wire [15:0] n172;
+  reg [3:0] n173;
+  wire [7:0] n174;
+  wire [7:0] n175;
+  assign uio_oe = n5; //(module output)
+  assign uo_out = n174; //(module output)
+  assign uio_out = n175; //(module output)
   /* top.vhdl:19:16  */
-  assign rst = n3; // (signal)
+  assign rst = n4; // (signal)
   /* top.vhdl:26:16  */
-  assign strip_trigger = n170; // (signal)
+  assign strip_trigger = n172; // (signal)
   /* top.vhdl:27:16  */
   always @*
-    strip_counter = n171; // (isignal)
+    strip_counter = n173; // (isignal)
   initial
     strip_counter = 4'b0000;
   /* top.vhdl:29:16  */
-  assign n3 = ~rst_n;
-  /* top.vhdl:31:9  */
+  assign n4 = ~rst_n;
+  /* top.vhdl:32:9  */
   spi_8 spi_controller (
     .i_clock(clk),
     .i_reset(rst),
-    .i_copi(n4),
-    .i_cs(n5),
+    .i_copi(n6),
+    .i_cs(n7),
     .o_command(),
     .o_command_ready(),
     .o_word(word),
     .o_word_ready(word_ready));
-  /* top.vhdl:37:32  */
-  assign n4 = ui_in[1]; // extract
-  /* top.vhdl:36:30  */
-  assign n5 = ui_in[0]; // extract
-  /* top.vhdl:49:17  */
+  /* top.vhdl:38:32  */
+  assign n6 = ui_in[1]; // extract
+  /* top.vhdl:37:30  */
+  assign n7 = ui_in[0]; // extract
+  /* top.vhdl:50:17  */
   ws2811_8 led_o_n1_led (
-    .i_clock(clk),
-    .i_reset(rst),
-    .i_trigger(n10),
-    .i_pixel_data(word),
-    .o_data(\led_o_n1_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n10 = strip_trigger[0]; // extract
-  /* top.vhdl:49:17  */
-  ws2811_8 led_o_n2_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n12),
     .i_pixel_data(word),
-    .o_data(\led_o_n2_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n12 = strip_trigger[1]; // extract
-  /* top.vhdl:49:17  */
-  ws2811_8 led_o_n3_led (
+    .o_data(\led_o_n1_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n12 = strip_trigger[0]; // extract
+  /* top.vhdl:50:17  */
+  ws2811_8 led_o_n2_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n14),
     .i_pixel_data(word),
-    .o_data(\led_o_n3_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n14 = strip_trigger[2]; // extract
-  /* top.vhdl:49:17  */
-  ws2811_8 led_o_n4_led (
+    .o_data(\led_o_n2_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n14 = strip_trigger[1]; // extract
+  /* top.vhdl:50:17  */
+  ws2811_8 led_o_n3_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n16),
     .i_pixel_data(word),
-    .o_data(\led_o_n4_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n16 = strip_trigger[3]; // extract
-  /* top.vhdl:49:17  */
-  ws2811_8 led_o_n5_led (
+    .o_data(\led_o_n3_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n16 = strip_trigger[2]; // extract
+  /* top.vhdl:50:17  */
+  ws2811_8 led_o_n4_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n18),
     .i_pixel_data(word),
-    .o_data(\led_o_n5_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n18 = strip_trigger[4]; // extract
-  /* top.vhdl:49:17  */
-  ws2811_8 led_o_n6_led (
+    .o_data(\led_o_n4_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n18 = strip_trigger[3]; // extract
+  /* top.vhdl:50:17  */
+  ws2811_8 led_o_n5_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n20),
     .i_pixel_data(word),
-    .o_data(\led_o_n6_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n20 = strip_trigger[5]; // extract
-  /* top.vhdl:49:17  */
-  ws2811_8 led_o_n7_led (
+    .o_data(\led_o_n5_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n20 = strip_trigger[4]; // extract
+  /* top.vhdl:50:17  */
+  ws2811_8 led_o_n6_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n22),
     .i_pixel_data(word),
-    .o_data(\led_o_n7_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n22 = strip_trigger[6]; // extract
-  /* top.vhdl:49:17  */
-  ws2811_8 led_o_n8_led (
+    .o_data(\led_o_n6_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n22 = strip_trigger[5]; // extract
+  /* top.vhdl:50:17  */
+  ws2811_8 led_o_n7_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n24),
     .i_pixel_data(word),
-    .o_data(\led_o_n8_led.o_data ));
-  /* top.vhdl:54:51  */
-  assign n24 = strip_trigger[7]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n1_led (
+    .o_data(\led_o_n7_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n24 = strip_trigger[6]; // extract
+  /* top.vhdl:50:17  */
+  ws2811_8 led_o_n8_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n26),
     .i_pixel_data(word),
-    .o_data(\led_io_n1_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n26 = strip_trigger[8]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n2_led (
+    .o_data(\led_o_n8_led.o_data ));
+  /* top.vhdl:55:51  */
+  assign n26 = strip_trigger[7]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n1_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n28),
     .i_pixel_data(word),
-    .o_data(\led_io_n2_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n28 = strip_trigger[9]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n3_led (
+    .o_data(\led_io_n1_led.o_data ));
+  /* top.vhdl:70:51  */
+  assign n28 = strip_trigger[8]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n2_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n30),
     .i_pixel_data(word),
-    .o_data(\led_io_n3_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n30 = strip_trigger[10]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n4_led (
+    .o_data(\led_io_n2_led.o_data ));
+  /* top.vhdl:70:51  */
+  assign n30 = strip_trigger[9]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n3_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n32),
     .i_pixel_data(word),
-    .o_data(\led_io_n4_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n32 = strip_trigger[11]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n5_led (
+    .o_data(\led_io_n3_led.o_data ));
+  /* top.vhdl:70:51  */
+  assign n32 = strip_trigger[10]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n4_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n34),
     .i_pixel_data(word),
-    .o_data(\led_io_n5_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n34 = strip_trigger[12]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n6_led (
+    .o_data(\led_io_n4_led.o_data ));
+  /* top.vhdl:70:51  */
+  assign n34 = strip_trigger[11]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n5_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n36),
     .i_pixel_data(word),
-    .o_data(\led_io_n6_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n36 = strip_trigger[13]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n7_led (
+    .o_data(\led_io_n5_led.o_data ));
+  /* top.vhdl:70:51  */
+  assign n36 = strip_trigger[12]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n6_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n38),
     .i_pixel_data(word),
-    .o_data(\led_io_n7_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n38 = strip_trigger[14]; // extract
-  /* top.vhdl:64:17  */
-  ws2811_8 led_io_n8_led (
+    .o_data(\led_io_n6_led.o_data ));
+  /* top.vhdl:70:51  */
+  assign n38 = strip_trigger[13]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n7_led (
     .i_clock(clk),
     .i_reset(rst),
     .i_trigger(n40),
     .i_pixel_data(word),
+    .o_data(\led_io_n7_led.o_data ));
+  /* top.vhdl:70:51  */
+  assign n40 = strip_trigger[14]; // extract
+  /* top.vhdl:65:17  */
+  ws2811_8 led_io_n8_led (
+    .i_clock(clk),
+    .i_reset(rst),
+    .i_trigger(n42),
+    .i_pixel_data(word),
     .o_data(\led_io_n8_led.o_data ));
-  /* top.vhdl:69:51  */
-  assign n40 = strip_trigger[15]; // extract
-  /* top.vhdl:81:42  */
-  assign n45 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:81:42  */
-  assign n47 = $signed(n45) < $signed(32'b00000000000000000000000000001111);
-  /* top.vhdl:82:64  */
-  assign n48 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:82:64  */
-  assign n50 = n48 + 32'b00000000000000000000000000000001;
-  /* top.vhdl:82:50  */
-  assign n51 = n50[3:0];  // trunc
-  /* top.vhdl:81:25  */
-  assign n53 = n47 ? n51 : 4'b0000;
-  /* top.vhdl:90:82  */
-  assign n59 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n61 = n59 == 32'b00000000000000000000000000000000;
-  /* top.vhdl:90:64  */
-  assign n62 = n61 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n63 = n62 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n66 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n68 = n66 == 32'b00000000000000000000000000000001;
-  /* top.vhdl:90:64  */
-  assign n69 = n68 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n70 = n69 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n73 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n75 = n73 == 32'b00000000000000000000000000000010;
-  /* top.vhdl:90:64  */
-  assign n76 = n75 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n77 = n76 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n80 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n82 = n80 == 32'b00000000000000000000000000000011;
-  /* top.vhdl:90:64  */
-  assign n83 = n82 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n84 = n83 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n87 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n89 = n87 == 32'b00000000000000000000000000000100;
-  /* top.vhdl:90:64  */
-  assign n90 = n89 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n91 = n90 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n94 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n96 = n94 == 32'b00000000000000000000000000000101;
-  /* top.vhdl:90:64  */
-  assign n97 = n96 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n98 = n97 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n101 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n103 = n101 == 32'b00000000000000000000000000000110;
-  /* top.vhdl:90:64  */
-  assign n104 = n103 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n105 = n104 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n108 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n110 = n108 == 32'b00000000000000000000000000000111;
-  /* top.vhdl:90:64  */
-  assign n111 = n110 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n112 = n111 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n115 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n117 = n115 == 32'b00000000000000000000000000001000;
-  /* top.vhdl:90:64  */
-  assign n118 = n117 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n119 = n118 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n122 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n124 = n122 == 32'b00000000000000000000000000001001;
-  /* top.vhdl:90:64  */
-  assign n125 = n124 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n126 = n125 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n129 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n131 = n129 == 32'b00000000000000000000000000001010;
-  /* top.vhdl:90:64  */
-  assign n132 = n131 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n133 = n132 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n136 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n138 = n136 == 32'b00000000000000000000000000001011;
-  /* top.vhdl:90:64  */
-  assign n139 = n138 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n140 = n139 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n143 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n145 = n143 == 32'b00000000000000000000000000001100;
-  /* top.vhdl:90:64  */
-  assign n146 = n145 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n147 = n146 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n150 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n152 = n150 == 32'b00000000000000000000000000001101;
-  /* top.vhdl:90:64  */
-  assign n153 = n152 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n154 = n153 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n157 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n159 = n157 == 32'b00000000000000000000000000001110;
-  /* top.vhdl:90:64  */
-  assign n160 = n159 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n161 = n160 ? 1'b1 : 1'b0;
-  /* top.vhdl:90:82  */
-  assign n164 = {28'b0, strip_counter};  //  uext
-  /* top.vhdl:90:82  */
-  assign n166 = n164 == 32'b00000000000000000000000000001111;
-  /* top.vhdl:90:64  */
-  assign n167 = n166 & word_ready;
-  /* top.vhdl:90:41  */
-  assign n168 = n167 ? 1'b1 : 1'b0;
-  assign n170 = {n168, n161, n154, n147, n140, n133, n126, n119, n112, n105, n98, n91, n84, n77, n70, n63};
-  /* top.vhdl:80:17  */
+  /* top.vhdl:70:51  */
+  assign n42 = strip_trigger[15]; // extract
+  /* top.vhdl:82:42  */
+  assign n47 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:82:42  */
+  assign n49 = $signed(n47) < $signed(32'b00000000000000000000000000001111);
+  /* top.vhdl:83:64  */
+  assign n50 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:83:64  */
+  assign n52 = n50 + 32'b00000000000000000000000000000001;
+  /* top.vhdl:83:50  */
+  assign n53 = n52[3:0];  // trunc
+  /* top.vhdl:82:25  */
+  assign n55 = n49 ? n53 : 4'b0000;
+  /* top.vhdl:91:82  */
+  assign n61 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n63 = n61 == 32'b00000000000000000000000000000000;
+  /* top.vhdl:91:64  */
+  assign n64 = n63 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n65 = n64 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n68 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n70 = n68 == 32'b00000000000000000000000000000001;
+  /* top.vhdl:91:64  */
+  assign n71 = n70 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n72 = n71 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n75 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n77 = n75 == 32'b00000000000000000000000000000010;
+  /* top.vhdl:91:64  */
+  assign n78 = n77 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n79 = n78 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n82 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n84 = n82 == 32'b00000000000000000000000000000011;
+  /* top.vhdl:91:64  */
+  assign n85 = n84 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n86 = n85 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n89 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n91 = n89 == 32'b00000000000000000000000000000100;
+  /* top.vhdl:91:64  */
+  assign n92 = n91 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n93 = n92 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n96 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n98 = n96 == 32'b00000000000000000000000000000101;
+  /* top.vhdl:91:64  */
+  assign n99 = n98 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n100 = n99 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n103 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n105 = n103 == 32'b00000000000000000000000000000110;
+  /* top.vhdl:91:64  */
+  assign n106 = n105 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n107 = n106 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n110 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n112 = n110 == 32'b00000000000000000000000000000111;
+  /* top.vhdl:91:64  */
+  assign n113 = n112 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n114 = n113 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n117 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n119 = n117 == 32'b00000000000000000000000000001000;
+  /* top.vhdl:91:64  */
+  assign n120 = n119 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n121 = n120 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n124 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n126 = n124 == 32'b00000000000000000000000000001001;
+  /* top.vhdl:91:64  */
+  assign n127 = n126 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n128 = n127 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n131 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n133 = n131 == 32'b00000000000000000000000000001010;
+  /* top.vhdl:91:64  */
+  assign n134 = n133 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n135 = n134 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n138 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n140 = n138 == 32'b00000000000000000000000000001011;
+  /* top.vhdl:91:64  */
+  assign n141 = n140 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n142 = n141 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n145 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n147 = n145 == 32'b00000000000000000000000000001100;
+  /* top.vhdl:91:64  */
+  assign n148 = n147 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n149 = n148 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n152 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n154 = n152 == 32'b00000000000000000000000000001101;
+  /* top.vhdl:91:64  */
+  assign n155 = n154 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n156 = n155 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n159 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n161 = n159 == 32'b00000000000000000000000000001110;
+  /* top.vhdl:91:64  */
+  assign n162 = n161 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n163 = n162 ? 1'b1 : 1'b0;
+  /* top.vhdl:91:82  */
+  assign n166 = {28'b0, strip_counter};  //  uext
+  /* top.vhdl:91:82  */
+  assign n168 = n166 == 32'b00000000000000000000000000001111;
+  /* top.vhdl:91:64  */
+  assign n169 = n168 & word_ready;
+  /* top.vhdl:91:41  */
+  assign n170 = n169 ? 1'b1 : 1'b0;
+  assign n172 = {n170, n163, n156, n149, n142, n135, n128, n121, n114, n107, n100, n93, n86, n79, n72, n65};
+  /* top.vhdl:81:17  */
   always @(negedge word_ready or posedge rst)
     if (rst)
-      n171 <= 4'b0000;
+      n173 <= 4'b0000;
     else
-      n171 <= n53;
-  /* top.vhdl:78:17  */
-  assign n172 = {\led_o_n8_led.o_data , \led_o_n7_led.o_data , \led_o_n6_led.o_data , \led_o_n5_led.o_data , \led_o_n4_led.o_data , \led_o_n3_led.o_data , \led_o_n2_led.o_data , \led_o_n1_led.o_data };
-  assign n173 = {\led_io_n8_led.o_data , \led_io_n7_led.o_data , \led_io_n6_led.o_data , \led_io_n5_led.o_data , \led_io_n4_led.o_data , \led_io_n3_led.o_data , \led_io_n2_led.o_data , \led_io_n1_led.o_data };
+      n173 <= n55;
+  /* top.vhdl:79:17  */
+  assign n174 = {\led_o_n8_led.o_data , \led_o_n7_led.o_data , \led_o_n6_led.o_data , \led_o_n5_led.o_data , \led_o_n4_led.o_data , \led_o_n3_led.o_data , \led_o_n2_led.o_data , \led_o_n1_led.o_data };
+  assign n175 = {\led_io_n8_led.o_data , \led_io_n7_led.o_data , \led_io_n6_led.o_data , \led_io_n5_led.o_data , \led_io_n4_led.o_data , \led_io_n3_led.o_data , \led_io_n2_led.o_data , \led_io_n1_led.o_data };
 endmodule
 
